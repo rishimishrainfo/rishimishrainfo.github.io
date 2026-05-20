@@ -1,3 +1,33 @@
+// Custom Cursor Tracking
+const cursor = document.querySelector('.cursor');
+const cursorFollower = document.querySelector('.cursor-follower');
+
+// Update cursor positions on mouse move
+document.addEventListener('mousemove', (e) => {
+    // Immediate cursor update
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+
+    // Follower cursor update (delayed via CSS transition)
+    cursorFollower.style.left = e.clientX + 'px';
+    cursorFollower.style.top = e.clientY + 'px';
+});
+
+// Add hover effects to clickable elements
+const interactables = document.querySelectorAll('a, button, .btn, .project-card, .social-links a, .hamburger');
+
+interactables.forEach((el) => {
+    el.addEventListener('mouseenter', () => {
+        cursor.classList.add('hovering');
+        cursorFollower.classList.add('hovering');
+    });
+
+    el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hovering');
+        cursorFollower.classList.remove('hovering');
+    });
+});
+
 // Smooth Scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
